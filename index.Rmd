@@ -1,0 +1,11 @@
+---
+title: "My awesome website"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+# This is Jeff's awesome website
+9999666777
+![](https://media.giphy.com/media/drXGoW1iudhKw/giphy.gif)
