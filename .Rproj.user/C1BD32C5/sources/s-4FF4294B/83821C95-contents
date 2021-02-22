@@ -1,9 +1,0 @@
----
-title: "Analysis of Time-varying Brain Dynamics and Cognitive Correlates"
-output: 
-  html_document:
-    toc: true
-    toc_float: true
----
-
-# Introduction
