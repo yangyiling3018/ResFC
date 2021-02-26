@@ -19,4 +19,6 @@ This website is the official site for the project, *Analysis of Time-varying Bra
 # Background and Introduction
 ![](./elements/backIntro.jpg)
 
+# Download Code
 
+<a href="code.zip">Download Here</a>
