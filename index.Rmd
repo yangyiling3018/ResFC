@@ -6,6 +6,17 @@ output:
     toc_float: true
 ---
 
-# Introduction
+<div style="margin-bottom:50px;">
+</div>
 
-Now let's start
+# About this site
+
+This website is the official site for the project, *Analysis of Time-varying Brain Dynamics and Cognitive Correlates*. The project is led by [Professor Seonjoo Lee](https://sites.google.com/site/seonjool/) from Columbia University. Yiling Yang, a 2nd year MS Biostatistics student also from Columbia University, performed the major analysis. Their contact information can be found at the end of this page. The website is for introduction of the project and make code and slides open sources to those who are interested in this topic.
+
+<div style="margin-bottom:50px;">
+</div>
+
+# Background and Introduction
+![](./elements/backIntro.jpg)
+
+
