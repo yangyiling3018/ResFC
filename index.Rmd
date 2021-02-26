@@ -5,6 +5,11 @@ output:
     toc: true
     toc_float: true
 ---
+<style type="text/css">
+  body{
+  font-size: 14pt;
+}
+</style>
 
 <div style="margin-bottom:50px;">
 </div>
@@ -18,6 +23,40 @@ This website is the official site for the project, *Analysis of Time-varying Bra
 
 # Background and Introduction
 ![](./elements/backIntro.jpg)
+
+# Data
+
+There are three datasets involved in this projects.
+
+<dl>
+  <dt>Functional fMRI data</dt>
+    <dd>- 477 healthy subjects collected using Shen Atlas</dd>
+    <dd>- Two possible studying length: 285 or 150</dd>
+    <dd>- Neuropsychological score</dd>
+  <dt>Neuropsychological score</dt>
+    <dd>
+  
+      - Acquired before fMRI data acquisition.
+      <dl>
+  	 	 <dt>1. Memory: Selective Reminding Task (SRT)</dt>
+		    <dt>2. Reasoning (WAIS III)</dt>
+		      <dd>- Block Design Test</dd>
+		      <dd>- Letter-Number Sequencing Test</dd>
+		      <dd>- Matrix Reasoning test</dd>
+		    <dt>3. Speed Attention</dt>
+		      <dd>- The Digit Symbol subtest (WAIS III)</dd>
+			    <dd>- Part A of the Trail Making Test</dd>
+			    <dd>- Number of colored ink patches in the Stroop color naming test</dd>
+		    <dt>4. Vocabulary</dt>
+		      <dd>- Wechsler Test of Adult Reading (WAIS III)</dd>
+			    <dd>- American National Adult Reading Test (AMNART)</dd>
+		    <dt>5. IQ</dt> 
+		  </dl>
+    </dd>
+  <dt>Demographic data</dt>
+    <dd>- Acquired before fMRI data acquisition</dd>
+</dl>
+
 
 # Download Code
 
