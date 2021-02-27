@@ -18,45 +18,38 @@ output:
 
 This website is the official site for the project, *Analysis of Time-varying Brain Dynamics and Cognitive Correlates*. The project is led by [Professor Seonjoo Lee](https://sites.google.com/site/seonjool/) from Columbia University. Yiling Yang, a 2nd year MS Biostatistics student also from Columbia University, performed the major analysis. Their contact information can be found at the end of this page. The website is for introduction of the project and make code and slides open sources to those who are interested in this topic.
 
-<div style="margin-bottom:50px;">
+<div style="margin-bottom:30px;">
 </div>
 
 # Background and Introduction
 ![](./elements/backIntro.jpg)
 
+<div style="margin-bottom:50px;">
+</div>
+
 # Data
 
-There are three datasets involved in this projects.
+There are three datasets involved in this projects. Demographic and Neuropsychological scores were required before the fMRI study. In later analysis, neuropsychological score will be considered as primary interests or dependent variable. Demographic contains age information for each subject, which is used as an adjustment for regression analysis. The fMRI data were used for clustering analysis and derivation of dynamic metrics (introduce later), which mainly served as independent variables in later analysis.
 
-<dl>
-  <dt>Functional fMRI data</dt>
-    <dd>- 477 healthy subjects collected using Shen Atlas</dd>
-    <dd>- Two possible studying length: 285 or 150</dd>
-    <dd>- Neuropsychological score</dd>
-  <dt>Neuropsychological score</dt>
-    <dd>
-  
-      - Acquired before fMRI data acquisition.
-      <dl>
-  	 	 <dt>1. Memory: Selective Reminding Task (SRT)</dt>
-		    <dt>2. Reasoning (WAIS III)</dt>
-		      <dd>- Block Design Test</dd>
-		      <dd>- Letter-Number Sequencing Test</dd>
-		      <dd>- Matrix Reasoning test</dd>
-		    <dt>3. Speed Attention</dt>
-		      <dd>- The Digit Symbol subtest (WAIS III)</dd>
-			    <dd>- Part A of the Trail Making Test</dd>
-			    <dd>- Number of colored ink patches in the Stroop color naming test</dd>
-		    <dt>4. Vocabulary</dt>
-		      <dd>- Wechsler Test of Adult Reading (WAIS III)</dd>
-			    <dd>- American National Adult Reading Test (AMNART)</dd>
-		    <dt>5. IQ</dt> 
-		  </dl>
-    </dd>
-  <dt>Demographic data</dt>
-    <dd>- Acquired before fMRI data acquisition</dd>
-</dl>
+<div style="margin-bottom:30px;">
+</div>
 
+![](./elements/dataset.jpg)
+
+<div style="margin-bottom:50px;">
+</div>
+
+# Preprocessing & Clulstering Analysis
+
+Before any analysis, we removed first and last 14 time points data due to the effect of filtering. To capture the phase of BOLD signal, we performed *Hilbert Transformation*, a decomposition method. Cosine distance metrices at each time point. For such distance metrix at each time point, we performed *PCA* and kept the *1st* eigenvector only. Since dist nce matrix is diagnoal, the speed of processing can be significantly improved. Data entries were reduced from $N^2$ to ${N(N-1)}\over{2}$. After removed some subjects with incorrect measured length and too much head motion, we performed *K-means* and *Gaussian Mixture Model* clustering on stacked dataset of every subject. For K-means, *Dunn Index* was used for hyperparameter tuning. Lastly, *hierarchical clustering* was used to review similarities between clusters found by K-means and GMM.
+
+<div style="margin-bottom:30px;">
+</div>
+
+![](./elements/preprocessing.jpg)
+
+<div style="margin-bottom:50px;">
+</div>
 
 # Download Code
 

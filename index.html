@@ -385,120 +385,38 @@ div.tocify {
 <div id="about-this-site" class="section level1">
 <h1>About this site</h1>
 <p>This website is the official site for the project, <em>Analysis of Time-varying Brain Dynamics and Cognitive Correlates</em>. The project is led by <a href="https://sites.google.com/site/seonjool/">Professor Seonjoo Lee</a> from Columbia University. Yiling Yang, a 2nd year MS Biostatistics student also from Columbia University, performed the major analysis. Their contact information can be found at the end of this page. The website is for introduction of the project and make code and slides open sources to those who are interested in this topic.</p>
-<div style="margin-bottom:50px;">
+<div style="margin-bottom:30px;">
 
 </div>
 </div>
 <div id="background-and-introduction" class="section level1">
 <h1>Background and Introduction</h1>
 <p><img src="elements/backIntro.jpg" /></p>
+<div style="margin-bottom:50px;">
+
+</div>
 </div>
 <div id="data" class="section level1">
 <h1>Data</h1>
-<p>There are three datasets involved in this projects.</p>
-<dl>
-<dt>
-Functional fMRI data
-</dt>
-<dd>
-<ul>
-<li>477 healthy subjects collected using Shen Atlas
-</dd>
-<dd>
-<ul>
-<li>Two possible studying length: 285 or 150
-</dd>
-<dd>
-<ul>
-<li>Neuropsychological score
-</dd>
-<dt>
-Neuropsychological score
-</dt>
-<dd>
-<ul>
-<li>Acquired before fMRI data acquisition.
-<dl>
-<dt>
-<ol style="list-style-type: decimal">
-<li>Memory: Selective Reminding Task (SRT)
-</dt>
-<dt>
-<ol start="2" style="list-style-type: decimal">
-<li>Reasoning (WAIS III)
-</dt>
-<dd>
-<ul>
-<li>Block Design Test
-</dd>
-<dd>
-<ul>
-<li>Letter-Number Sequencing Test
-</dd>
-<dd>
-<ul>
-<li>Matrix Reasoning test
-</dd>
-<dt>
-<ol start="3" style="list-style-type: decimal">
-<li>Speed Attention
-</dt>
-<dd>
-<ul>
-<li>The Digit Symbol subtest (WAIS III)
-</dd>
-<dd>
-<ul>
-<li>Part A of the Trail Making Test
-</dd>
-<dd>
-<ul>
-<li>Number of colored ink patches in the Stroop color naming test
-</dd>
-<dt>
-<ol start="4" style="list-style-type: decimal">
-<li>Vocabulary
-</dt>
-<dd>
-<ul>
-<li>Wechsler Test of Adult Reading (WAIS III)
-</dd>
-<dd>
-<ul>
-<li>American National Adult Reading Test (AMNART)
-</dd>
-<dt>
-<ol start="5" style="list-style-type: decimal">
-<li>IQ
-</dt>
-</dl></li>
-</ol></li>
-</ul></li>
-</ul></li>
-</ol></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ol></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ol></li>
-</ol></li>
-</ul></li>
-</ul>
-</dd>
-<dt>
-Demographic data
-</dt>
-<dd>
-<ul>
-<li>Acquired before fMRI data acquisition
-</dd>
-</dl></li>
-</ul></li>
-</ul></li>
-</ul>
+<p>There are three datasets involved in this projects. Demographic and Neuropsychological scores were required before the fMRI study. In later analysis, neuropsychological score will be considered as primary interests or dependent variable. Demographic contains age information for each subject, which is used as an adjustment for regression analysis. The fMRI data were used for clustering analysis and derivation of dynamic metrics (introduce later), which mainly served as independent variables in later analysis.</p>
+<div style="margin-bottom:30px;">
+
+</div>
+<p><img src="elements/dataset.jpg" /></p>
+<div style="margin-bottom:50px;">
+
+</div>
+</div>
+<div id="preprocessing-clulstering-analysis" class="section level1">
+<h1>Preprocessing &amp; Clulstering Analysis</h1>
+<p>Before any analysis, we removed first and last 14 time points data due to the effect of filtering. To capture the phase of BOLD signal, we performed <em>Hilbert Transformation</em>, a decomposition method. Cosine distance metrices at each time point. For such distance metrix at each time point, we performed <em>PCA</em> and kept the <em>1st</em> eigenvector only. Since dist nce matrix is diagnoal, the speed of processing can be significantly improved. Data entries were reduced from <span class="math inline">\(N^2\)</span> to <span class="math inline">\({N(N-1)}\over{2}\)</span>. After removed some subjects with incorrect measured length and too much head motion, we performed <em>K-means</em> and <em>Gaussian Mixture Model</em> clustering on stacked dataset of every subject. For K-means, <em>Dunn Index</em> was used for hyperparameter tuning. Lastly, <em>hierarchical clustering</em> was used to review similarities between clusters found by K-means and GMM.</p>
+<div style="margin-bottom:30px;">
+
+</div>
+<p><img src="elements/preprocessing.jpg" /></p>
+<div style="margin-bottom:50px;">
+
+</div>
 </div>
 <div id="download-code" class="section level1">
 <h1>Download Code</h1>
