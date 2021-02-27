@@ -43,32 +43,27 @@ There are three datasets involved in this projects. Demographic and Neuropsychol
 
 Before any analysis, we removed first and last 14 time points data due to the effect of filtering. To capture the phase of BOLD signal, we performed *Hilbert Transformation*, a decomposition method. Cosine distance metrices at each time point. For such distance metrix at each time point, we performed *PCA* and kept the *1st* eigenvector only. Since dist nce matrix is diagnoal, the speed of processing can be significantly improved. Data entries were reduced from $N^2$ to ${N(N-1)}\over{2}$. Process so far is so-called *Leading Eigenvector Dynamic Analysis* (*LEiDA*). After removed some subjects with incorrect measured length and too much head motion, we performed *K-means* and *Gaussian Mixture Model* clustering on stacked dataset of every subject. For K-means, *Dunn Index* was used for hyperparameter tuning. Lastly, *hierarchical clustering* was used to review similarities between clusters found by K-means and GMM.
 
-<div style="margin-bottom:30px;">
-</div>
+<div style="margin-bottom:30px;"></div>
 
 <center>![](./elements/preprocessing.jpg)</center>
 
-<div style="margin-bottom:50px;">
-</div>
+<div style="margin-bottom:50px;"></div>
 
 # Correlation & Regression Analysis
 
 K-means basically gives us a cluster label to every moment a subject was in during corresponding session. After then, we define 4 dynamic metrics to describe subjecs' brain behavior. All of them were used in later correlaion and relation analysis. Previous study has found that age plays an importnat role in cognitive decline (Varangis, 2019). Given this information, we adjust effect of independent variables by including main effect and interaction effect of age. This is also helpful that it can be used examine a potential confounding effect induced by age.
 
-<div style="margin-bottom:30px;">
-</div>
+<div style="margin-bottom:30px;"></div>
 
 <center>![](./elements/corr_reg.jpg)</center>
 
-<div style="margin-bottom:50px;">
-</div>
+<div style="margin-bottom:50px;"></div>
 
 # Results
 
-<div style="margin-bottom:30px;">
-</div>
+<div style="margin-bottom:30px;"></div>
 
-## Cluster Analysis
+## Clustering Analysis
 
 K-means found 4 centers in total. Ther are shown below. Visualization was made using nilearn package in Python.
 
@@ -99,14 +94,58 @@ Gaussian Mixture Model seemed to output very different results. The number of cl
 
 ## Correlation Analysis (Pearson)
 
-<div style="margin-bottom:30px;"></div>
+Through correlation analysis among neuropsychological score and dynamic metrics, we found many significant correlation. This suggested it might be necessary to dive in more about their relationships (See results below), especially we can take age into account. We will talk more about this in the regression section.
 
+<div style="margin-bottom:30px;"></div>
 <center>![](./elements/corr_tb1.jpg)</center>
 <center>![](./elements/corr_tb2.jpg)</center>
 <center>![](./elements/corr_tb3.jpg)</center>
 <center>![](./elements/significance.jpg)</center>
 <div style="margin-bottom:30px;"></div>
 
+## Regression Analysis
+
+In terms of regression analysis, we found many fignificant effect. Without surprising, age is always a significant effect when combining wih any independent variable. Resulst are sumarized below. It's worth to note that when adding the interaction term between age and independent variable, none of them had a huge change in their main effect and none interaction was significant. This suggested a non-existence of confounding effect. 
+
+<div style="margin-bottom:30px;"></div>
+<center>![](./elements/regression.jpg)</center>
+<center>![](./elements/regression2.jpg)</center>
+<center>![](./elements/regression3.jpg)</center>
+<div style="margin-bottom:50px;"></div>
+
+# Conclusion & Discussion 
+
+<div style="margin-bottom:30px;"></div>
+
+- In addition to validate the methodology used by previous study (Hilbert transformation and clustering analysis), We further identified many significant effects between identified networks and correlation with cognitive capabilities have. More importantly, those effects are adjusted by the aging effect
+- Future researchers can further validate using different methods. Since clustering results tend to be different if we switch to  different types of clustering methods such as GMM
+- Future researchers can also investigate one specific cognitive capability in detail given that we only performed relatively straightforward regression analysis
+
+<div style="margin-bottom:50px;"></div>
+
+# Reference
+
+<div style="margin-bottom:30px;"></div>
+
+- Cabral, J., Vidaurre, D., Marques, P. et al. Cognitive performance in healthy older adults relates to spontaneous switching between states of functional connectivity during rest. Sci Rep 7, 5135 (2017). https://doi.org/10.1038/s41598-017-05425-7
+- Salthouse, T. A., Habeck, C., Razlighi, Q., Barulli, D., Gazes, Y., & Stern, Y. (2015). Breadth and age-dependency of relations between cortical thickness and cognition. Neurobiology of aging, 36(11), 3020–3028. https://doi.org/10.1016/j.neurobiolaging.2015.08.011
+- Varangis E, Habeck CG, Razlighi QR and Stern Y (2019) The Effect of Aging on Resting State Connectivity of Predefined Networks in the Brain. Front. Aging Neurosci. 11:234. doi: 10.3389/fnagi.2019.00234
+
+<div style="margin-bottom:50px;"></div>
+
+# Contributers
+
+<div style="margin-bottom:30px;"></div>
+
+- [Seonjoo Lee](https://sites.google.com/site/seonjool/)
+- Yiling Yang (yy3018@columbia.edu | yangyiling3018@gmail.com)
+
+<div style="margin-bottom:50px;"></div>
+
 # Download Code
+
+<div style="margin-bottom:30px;"></div>
+
+We decide to open source our code for future researchers. Please research out any of contributors listed above if you have any questions
 
 <a href="code.zip">Download Here</a>
