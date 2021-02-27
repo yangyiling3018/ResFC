@@ -389,9 +389,11 @@ div.tocify {
 
 </div>
 </div>
-<div id="background-and-introduction" class="section level1">
-<h1>Background and Introduction</h1>
-<p><img src="elements/backIntro.jpg" /></p>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<center>
+<img src="elements/backIntro.jpg" />
+</center>
 <div style="margin-bottom:50px;">
 
 </div>
@@ -402,20 +404,98 @@ div.tocify {
 <div style="margin-bottom:30px;">
 
 </div>
-<p><img src="elements/dataset.jpg" /></p>
+<center>
+<img src="elements/dataset.jpg" />
+</center>
 <div style="margin-bottom:50px;">
 
 </div>
 </div>
-<div id="preprocessing-clulstering-analysis" class="section level1">
-<h1>Preprocessing &amp; Clulstering Analysis</h1>
-<p>Before any analysis, we removed first and last 14 time points data due to the effect of filtering. To capture the phase of BOLD signal, we performed <em>Hilbert Transformation</em>, a decomposition method. Cosine distance metrices at each time point. For such distance metrix at each time point, we performed <em>PCA</em> and kept the <em>1st</em> eigenvector only. Since dist nce matrix is diagnoal, the speed of processing can be significantly improved. Data entries were reduced from <span class="math inline">\(N^2\)</span> to <span class="math inline">\({N(N-1)}\over{2}\)</span>. After removed some subjects with incorrect measured length and too much head motion, we performed <em>K-means</em> and <em>Gaussian Mixture Model</em> clustering on stacked dataset of every subject. For K-means, <em>Dunn Index</em> was used for hyperparameter tuning. Lastly, <em>hierarchical clustering</em> was used to review similarities between clusters found by K-means and GMM.</p>
+<div id="leida-clustering-analysis" class="section level1">
+<h1>LEiDA &amp; Clustering Analysis</h1>
+<p>Before any analysis, we removed first and last 14 time points data due to the effect of filtering. To capture the phase of BOLD signal, we performed <em>Hilbert Transformation</em>, a decomposition method. Cosine distance metrices at each time point. For such distance metrix at each time point, we performed <em>PCA</em> and kept the <em>1st</em> eigenvector only. Since dist nce matrix is diagnoal, the speed of processing can be significantly improved. Data entries were reduced from <span class="math inline">\(N^2\)</span> to <span class="math inline">\({N(N-1)}\over{2}\)</span>. Process so far is so-called <em>Leading Eigenvector Dynamic Analysis</em> (<em>LEiDA</em>). After removed some subjects with incorrect measured length and too much head motion, we performed <em>K-means</em> and <em>Gaussian Mixture Model</em> clustering on stacked dataset of every subject. For K-means, <em>Dunn Index</em> was used for hyperparameter tuning. Lastly, <em>hierarchical clustering</em> was used to review similarities between clusters found by K-means and GMM.</p>
 <div style="margin-bottom:30px;">
 
 </div>
-<p><img src="elements/preprocessing.jpg" /></p>
+<center>
+<img src="elements/preprocessing.jpg" />
+</center>
 <div style="margin-bottom:50px;">
 
+</div>
+</div>
+<div id="correlation-regression-analysis" class="section level1">
+<h1>Correlation &amp; Regression Analysis</h1>
+<p>K-means basically gives us a cluster label to every moment a subject was in during corresponding session. After then, we define 4 dynamic metrics to describe subjecs’ brain behavior. All of them were used in later correlaion and relation analysis. Previous study has found that age plays an importnat role in cognitive decline (Varangis, 2019). Given this information, we adjust effect of independent variables by including main effect and interaction effect of age. This is also helpful that it can be used examine a potential confounding effect induced by age.</p>
+<div style="margin-bottom:30px;">
+
+</div>
+<center>
+<img src="elements/corr_reg.jpg" />
+</center>
+<div style="margin-bottom:50px;">
+
+</div>
+</div>
+<div id="results" class="section level1">
+<h1>Results</h1>
+<div style="margin-bottom:30px;">
+
+</div>
+<div id="cluster-analysis" class="section level2">
+<h2>Cluster Analysis</h2>
+<p>K-means found 4 centers in total. Ther are shown below. Visualization was made using nilearn package in Python.</p>
+<div style="margin-bottom:30px;">
+
+</div>
+<center>
+<img src="elements/kc12.jpg" width="400" /><img src="elements/kc34.jpg" width="400" />
+</center>
+<div style="margin-bottom:30px;">
+
+</div>
+<p>A summary of time length spent in each cluster was also created:</p>
+<div style="margin-bottom:30px;">
+
+</div>
+<center>
+<img src="elements/cluster_Summary.jpg" />
+</center>
+<div style="margin-bottom:30px;">
+
+</div>
+<p>There are some key observations from results above. First, the proportions of time spent in each network are evenly distributed based on the summary table. Meanwhile, some people seem never to be in a certain network give that minimum value can be 0. Another important aspect is that K-means is the main method suggested in Cabrel’s paper. It’s a distance-based method. However, the hierarchical clustering output (check below) made based on results from K-means and another model-based method. In the graph below, k* stands the *th center found by K-means and similarly for GMM.</p>
+<div style="margin-bottom:30px;">
+
+</div>
+<center>
+<img src="elements/hier.jpg" />
+</center>
+<div style="margin-bottom:30px;">
+
+</div>
+<p>Gaussian Mixture Model seemed to output very different results. The number of clusters GMM found is as double as that found by K-means. The different outcomes made by different algorithms is worth for future study that how consistent our results can be when using different types of clustering methods. Lastly, it’s interesting that we didn’t observe default network, a network found to be active during resting state.</p>
+</div>
+<div id="correlation-analysis-pearson" class="section level2">
+<h2>Correlation Analysis (Pearson)</h2>
+<div style="margin-bottom:30px;">
+
+</div>
+<center>
+<img src="elements/corr_tb1.jpg" />
+</center>
+<center>
+<img src="elements/corr_tb2.jpg" />
+</center>
+<center>
+<img src="elements/corr_tb3.jpg" />
+</center>
+<center>
+<img src="elements/significance.jpg" />
+</center>
+<div style="margin-bottom:30px;">
+
+</div>
 </div>
 </div>
 <div id="download-code" class="section level1">
