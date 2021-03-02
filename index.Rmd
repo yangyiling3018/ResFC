@@ -25,7 +25,7 @@ This website is the official site for the project, *Analysis of Time-varying Bra
 
 <div style="margin-bottom:30px;"></div>
 
-In 2017, researchers suggested Leading Eigenvector Dynamic Analysis as a way to processing and cluster BOLD signals (Cabral, 2017). LEiDA analysis effectively extracts phase information of the BOLD signal while reducing the dimension of data. Back then, it was a good exploration of a new method. Varangies and et.al suggested the aging effect on cognitive declining in 2019 (Varangies, 2019).
+In 2017, researchers suggested Leading Eigenvector Dynamic Analysis (LEiDA) as a way to processing and cluster BOLD signals (Cabral, 2017). LEiDA analysis effectively extracts phase information of the BOLD signal while reduces the dimension of data. Back then, it was a good exploration of a new method. Varangies and et al. suggested the aging effect on cognitive declining in 2019 (Varangies, 2019).
 
 <div style="margin-bottom:30px;"></div>
 
@@ -33,13 +33,13 @@ In 2017, researchers suggested Leading Eigenvector Dynamic Analysis as a way to 
 
 <div style="margin-bottom:30px;"></div>
 
-In this research project, we aimed to further validate LEiDA using more comprehensive data (More observations and more recorded ROIs) and take the aging effect into account by including it in a correlation and regression analysis. Using data collected by Shen atlas and similar dynamic metrics in Cabral's paper, we led to a similar conclusion even after taking the aging effect into account. Meanwhile, we consider there is still space for improvement, especially in terms of algorithm selection during the clustering analysis process.
+In this research project, we aimed to further validate LEiDA using more comprehensive data (more observations and more recorded ROIs) and take the aging effect into account by including it in a correlation and regression analysis. Using data collected by Shen atlas and similar dynamic metrics in Cabral's paper, we led to similar conclusions even after taking the aging effect into account. Meanwhile, we consider there is still space for improvement, especially in terms of algorithm selection during the clustering analysis process.
 
 <div style="margin-bottom:50px;"></div>
 
 # Data
 
-There are three datasets involved in this project. Demographic and Neuropsychological scores were required before the fMRI study. In later analysis, neuropsychological scores will be considered as primary interests or dependent variables. The demographic dataset contains age information for each subject, which is used as an adjustment for regression analysis. The fMRI data were used for clustering analysis and derivation of dynamic metrics (introduce later), which mainly served as independent variables in later analysis.
+There are three datasets involved in this project. Demographic and Neuropsychological scores were required before the fMRI study. In later analysis, neuropsychological scores would be considered as primary interests or dependent variables. The demographic dataset provided age information for each subject, which was used as an adjustment for regression analysis. The fMRI data were used for clustering analysis and derivation of dynamic metrics (introduce later), which mainly served as independent variables in later analysis.
 
 <div style="margin-bottom:30px;">
 </div>
@@ -51,7 +51,7 @@ There are three datasets involved in this project. Demographic and Neuropsycholo
 
 # LEiDA & Clustering Analysis
 
-Before any analysis, we removed the first and last 14-time points data due to the effect of filtering. To capture the phase of a BOLD signal, we performed *Hilbert Transformation*, a decomposition method. Cosine distance matrix at each time point. For such distance matrix at each time point, we performed *PCA* and kept the *1st* eigenvector only. Since the distance matrix is diagonal, the speed of processing can be significantly improved. Data entries were reduced from $N^2$ to ${N(N-1)}\over{2}$. The process so far is so-called *Leading Eigenvector Dynamic Analysis* (*LEiDA*). After removed some subjects with incorrect measured length and too much head motion, we performed *K-means* and *Gaussian Mixture Model* clustering on the stacked dataset of every subject. For K-means, *Dunn Index* was used for hyperparameter tuning. Lastly, *hierarchical clustering* was used to review similarities between clusters found by K-means and GMM.
+Before any analysis, we removed the first and last 14-time points data due to the effect of filtering. To capture the phase of a BOLD signal, we performed *Hilbert Transformation*, a decomposition method. Cosine distance matrix at each time point was computed for each subject. For such distance matrix at each time point, we performed *PCA* and kept the *1st* eigenvector only. Since the distance matrix is diagonal, the speed of processing can be significantly improved. Data entries were reduced from $N^2$ to ${N(N-1)}\over{2}$. The process so far is so-called *Leading Eigenvector Dynamic Analysis* (*LEiDA*). After removed some subjects with incorrect measured length and too much head motion, we performed *K-means* and *Gaussian Mixture Model* clustering on the stacked dataset of every subject. For K-means, *Dunn Index* was used for hyperparameter tuning. Lastly, *hierarchical clustering* was used to review similarities between clusters found by K-means and GMM.
 
 <div style="margin-bottom:30px;"></div>
 
@@ -61,7 +61,7 @@ Before any analysis, we removed the first and last 14-time points data due to th
 
 # Corr & Regression Analysis
 
-K-means gives us a cluster label to every moment a subject was in during the corresponding session. After then, we define 4 dynamic metrics to describe each subject's brain behavior. All of them were used in later correlation and relation analysis. The previous study has found that age plays an important role in cognitive decline (Varangis, 2019). Given this information, we adjust the effect of independent variables by including the main effect and interaction effect of age. This is also helpful that it can be used to examine a potential confounding effect induced by age.
+K-means gave us a cluster label to every moment a subject was in during the corresponding session. After then, we defined 4 dynamic metrics to describe each subject's brain behavior. All of them were used in later correlation and relation analysis. The previous study has found that age plays an important role in cognitive decline (Varangis, 2019). Given this information, we adjusted the effect of independent variables by including the main effect and interaction effect of age. This was also helpful that it can be used to examine a potential confounding effect induced by age.
 
 <div style="margin-bottom:30px;"></div>
 
@@ -104,7 +104,7 @@ As we can see, the number of clusters GMM found is double as that found by K-mea
 
 ## Correlation Analysis (Pearson)
 
-Through correlation analysis among neuropsychological scores and dynamic metrics, we found many significant correlations. This suggested it might be necessary to dive in more about their relationships (See results below), especially we can take age into account. We will talk more about this in the regression section.
+Through correlation analysis among neuropsychological scores and dynamic metrics, we found many significant correlations. This suggests it might be necessary to dive in more about their relationships (See results below), especially we can take age into account. We will talk more about this in the regression section.
 
 <div style="margin-bottom:30px;"></div>
 <center>![](./elements/corr_tb1.jpg)</center>
@@ -115,7 +115,7 @@ Through correlation analysis among neuropsychological scores and dynamic metrics
 
 ## Regression Analysis
 
-In terms of regression analysis, we found many significant effects. Without surprise, age is always a significant effect when combining with any independent variable. Results are summarized below. It's worth noting that when adding the interaction term between age and independent variable, none of them had a huge change in their main effect and no interaction was significant. This suggested the non-existence of confounding effects by age.
+In terms of regression analysis, we found many significant effects. Without surprise, age is always a significant effect when combining with any independent variable. Results are summarized below. It's worth noting that when adding the interaction term between age and independent variable, none of them had a huge change in their main effect and no interaction was significant. This suggests the non-existence of confounding effects by age.
 
 <div style="margin-bottom:30px;"></div>
 <center>![](./elements/regression.jpg)</center>
@@ -127,8 +127,8 @@ In terms of regression analysis, we found many significant effects. Without surp
 
 <div style="margin-bottom:30px;"></div>
 
-- In addition to validating the methodology used by the previous study (Hilbert transformation and clustering analysis), We further identified many significant effects between identified networks and correlation with cognitive capabilities have. More importantly, those effects are adjusted by the aging effect
-- Future researchers can further validate using different methods. Since clustering results tend to be different if we switch to  different types of clustering methods such as GMM
+- In addition to validating the methodology used by the previous study (Hilbert transformation and clustering analysis), We further identified many significant effects between identified networks and correlation with cognitive capabilities have. More importantly, those effects were adjusted by the aging effect
+- Future researchers can further validate using different methods, since clustering results tended to be different if we switch to  different types of clustering methods such as GMM
 - Future researchers can also investigate one specific cognitive capability in detail given that we only performed relatively straightforward regression analysis
 
 <div style="margin-bottom:50px;"></div>
