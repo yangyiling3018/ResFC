@@ -376,7 +376,7 @@ div.tocify {
 
 <style type="text/css">
   body{
-  font-size: 14pt;
+  font-size: 12pt;
 }
 </style>
 <div style="margin-bottom:50px;">
@@ -384,23 +384,34 @@ div.tocify {
 </div>
 <div id="about-this-site" class="section level1">
 <h1>About this site</h1>
-<p>This website is the official site for the project, <em>Analysis of Time-varying Brain Dynamics and Cognitive Correlates</em>. The project is led by <a href="https://sites.google.com/site/seonjool/">Professor Seonjoo Lee</a> from Columbia University. Yiling Yang, a 2nd year MS Biostatistics student also from Columbia University, performed the major analysis. Their contact information can be found at the end of this page. The website is for introduction of the project and make code and slides open sources to those who are interested in this topic.</p>
+<p>This website is the official site for the project, <em>Analysis of Time-varying Brain Dynamics and Cognitive Correlates</em>. The project is led by <a href="https://sites.google.com/site/seonjool/">Professor Seonjoo Lee</a> from Columbia University. Yiling Yang, a 2nd year MS Biostatistics student also from Columbia University, performed the major analysis. Their contact information can be found at the end of this page. The website is for introduction and code sharing for the project</p>
 <div style="margin-bottom:30px;">
 
 </div>
 </div>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
+<div style="margin-bottom:30px;">
+
+</div>
+<p>In 2017, researchers suggested Leading Eigenvector Dynamic Analysis as a way to processing and cluster BOLD signals (Cabral, 2017). LEiDA analysis effectively extracts phase information of the BOLD signal while reducing the dimension of data. Back then, it was a good exploration of a new method. Varangies and et.al suggested the aging effect on cognitive declining in 2019 (Varangies, 2019).</p>
+<div style="margin-bottom:30px;">
+
+</div>
 <center>
 <img src="elements/backIntro.jpg" />
 </center>
+<div style="margin-bottom:30px;">
+
+</div>
+<p>In this research project, we aimed to further validate LEiDA using more comprehensive data (More observations and more recorded ROIs) and take the aging effect into account by including it in a correlation and regression analysis. Using data collected by Shen atlas and similar dynamic metrics in Cabral’s paper, we led to a similar conclusion even after taking the aging effect into account. Meanwhile, we consider there is still space for improvement, especially in terms of algorithm selection during the clustering analysis process.</p>
 <div style="margin-bottom:50px;">
 
 </div>
 </div>
 <div id="data" class="section level1">
 <h1>Data</h1>
-<p>There are three datasets involved in this projects. Demographic and Neuropsychological scores were required before the fMRI study. In later analysis, neuropsychological score will be considered as primary interests or dependent variable. Demographic contains age information for each subject, which is used as an adjustment for regression analysis. The fMRI data were used for clustering analysis and derivation of dynamic metrics (introduce later), which mainly served as independent variables in later analysis.</p>
+<p>There are three datasets involved in this project. Demographic and Neuropsychological scores were required before the fMRI study. In later analysis, neuropsychological scores will be considered as primary interests or dependent variables. The demographic dataset contains age information for each subject, which is used as an adjustment for regression analysis. The fMRI data were used for clustering analysis and derivation of dynamic metrics (introduce later), which mainly served as independent variables in later analysis.</p>
 <div style="margin-bottom:30px;">
 
 </div>
@@ -413,7 +424,7 @@ div.tocify {
 </div>
 <div id="leida-clustering-analysis" class="section level1">
 <h1>LEiDA &amp; Clustering Analysis</h1>
-<p>Before any analysis, we removed first and last 14 time points data due to the effect of filtering. To capture the phase of BOLD signal, we performed <em>Hilbert Transformation</em>, a decomposition method. Cosine distance metrices at each time point. For such distance metrix at each time point, we performed <em>PCA</em> and kept the <em>1st</em> eigenvector only. Since dist nce matrix is diagnoal, the speed of processing can be significantly improved. Data entries were reduced from <span class="math inline">\(N^2\)</span> to <span class="math inline">\({N(N-1)}\over{2}\)</span>. Process so far is so-called <em>Leading Eigenvector Dynamic Analysis</em> (<em>LEiDA</em>). After removed some subjects with incorrect measured length and too much head motion, we performed <em>K-means</em> and <em>Gaussian Mixture Model</em> clustering on stacked dataset of every subject. For K-means, <em>Dunn Index</em> was used for hyperparameter tuning. Lastly, <em>hierarchical clustering</em> was used to review similarities between clusters found by K-means and GMM.</p>
+<p>Before any analysis, we removed the first and last 14-time points data due to the effect of filtering. To capture the phase of a BOLD signal, we performed <em>Hilbert Transformation</em>, a decomposition method. Cosine distance matrix at each time point. For such distance matrix at each time point, we performed <em>PCA</em> and kept the <em>1st</em> eigenvector only. Since the distance matrix is diagonal, the speed of processing can be significantly improved. Data entries were reduced from <span class="math inline">\(N^2\)</span> to <span class="math inline">\({N(N-1)}\over{2}\)</span>. The process so far is so-called <em>Leading Eigenvector Dynamic Analysis</em> (<em>LEiDA</em>). After removed some subjects with incorrect measured length and too much head motion, we performed <em>K-means</em> and <em>Gaussian Mixture Model</em> clustering on the stacked dataset of every subject. For K-means, <em>Dunn Index</em> was used for hyperparameter tuning. Lastly, <em>hierarchical clustering</em> was used to review similarities between clusters found by K-means and GMM.</p>
 <div style="margin-bottom:30px;">
 
 </div>
@@ -424,9 +435,9 @@ div.tocify {
 
 </div>
 </div>
-<div id="correlation-regression-analysis" class="section level1">
-<h1>Correlation &amp; Regression Analysis</h1>
-<p>K-means basically gives us a cluster label to every moment a subject was in during corresponding session. After then, we define 4 dynamic metrics to describe subjecs’ brain behavior. All of them were used in later correlaion and relation analysis. Previous study has found that age plays an importnat role in cognitive decline (Varangis, 2019). Given this information, we adjust effect of independent variables by including main effect and interaction effect of age. This is also helpful that it can be used examine a potential confounding effect induced by age.</p>
+<div id="corr-regression-analysis" class="section level1">
+<h1>Corr &amp; Regression Analysis</h1>
+<p>K-means gives us a cluster label to every moment a subject was in during the corresponding session. After then, we define 4 dynamic metrics to describe each subject’s brain behavior. All of them were used in later correlation and relation analysis. The previous study has found that age plays an important role in cognitive decline (Varangis, 2019). Given this information, we adjust the effect of independent variables by including the main effect and interaction effect of age. This is also helpful that it can be used to examine a potential confounding effect induced by age.</p>
 <div style="margin-bottom:30px;">
 
 </div>
@@ -464,7 +475,7 @@ div.tocify {
 <div style="margin-bottom:30px;">
 
 </div>
-<p>There are some key observations from results above. First, the proportions of time spent in each network are evenly distributed based on the summary table. Meanwhile, some people seem never to be in a certain network give that minimum value can be 0. Another important aspect is that K-means is the main method suggested in Cabrel’s paper. It’s a distance-based method. However, the hierarchical clustering output (check below) made based on results from K-means and another model-based method. In the graph below, k* stands the *th center found by K-means and similarly for GMM.</p>
+<p>There are some key observations from results above. First, the proportions of time spent in each network are evenly distributed based on the summary table. Meanwhile, some people seem never to be in a certain network given that the minimum value can be 0. Another important aspect is that K-means is the main method suggested in Cabrel’s paper. It’s a distance-based method. However, the hierarchical clustering output (check below) made based on results from K-means and GMM shows that their clustering outcomes are very different. In the graph below, k* stands the *th center found by K-means and similarly for GMM.</p>
 <div style="margin-bottom:30px;">
 
 </div>
@@ -474,11 +485,11 @@ div.tocify {
 <div style="margin-bottom:30px;">
 
 </div>
-<p>Gaussian Mixture Model seemed to output very different results. The number of clusters GMM found is as double as that found by K-means. The different outcomes made by different algorithms is worth for future study that how consistent our results can be when using different types of clustering methods. Lastly, it’s interesting that we didn’t observe default network, a network found to be active during resting state.</p>
+<p>As we can see, the number of clusters GMM found is double as that found by K-means. The differences in outcomes made by different algorithms are worth for future study that how consistent our results can be when using different types of clustering methods. Lastly, it’s interesting that we didn’t observe the default network, a network found to be active during resting state.</p>
 </div>
 <div id="correlation-analysis-pearson" class="section level2">
 <h2>Correlation Analysis (Pearson)</h2>
-<p>Through correlation analysis among neuropsychological score and dynamic metrics, we found many significant correlation. This suggested it might be necessary to dive in more about their relationships (See results below), especially we can take age into account. We will talk more about this in the regression section.</p>
+<p>Through correlation analysis among neuropsychological scores and dynamic metrics, we found many significant correlations. This suggested it might be necessary to dive in more about their relationships (See results below), especially we can take age into account. We will talk more about this in the regression section.</p>
 <div style="margin-bottom:30px;">
 
 </div>
@@ -500,7 +511,7 @@ div.tocify {
 </div>
 <div id="regression-analysis" class="section level2">
 <h2>Regression Analysis</h2>
-<p>In terms of regression analysis, we found many fignificant effect. Without surprising, age is always a significant effect when combining wih any independent variable. Resulst are sumarized below. It’s worth to note that when adding the interaction term between age and independent variable, none of them had a huge change in their main effect and none interaction was significant. This suggested a non-existence of confounding effect.</p>
+<p>In terms of regression analysis, we found many significant effects. Without surprise, age is always a significant effect when combining with any independent variable. Results are summarized below. It’s worth noting that when adding the interaction term between age and independent variable, none of them had a huge change in their main effect and no interaction was significant. This suggested the non-existence of confounding effects by age.</p>
 <div style="margin-bottom:30px;">
 
 </div>
@@ -524,7 +535,7 @@ div.tocify {
 
 </div>
 <ul>
-<li>In addition to validate the methodology used by previous study (Hilbert transformation and clustering analysis), We further identified many significant effects between identified networks and correlation with cognitive capabilities have. More importantly, those effects are adjusted by the aging effect</li>
+<li>In addition to validating the methodology used by the previous study (Hilbert transformation and clustering analysis), We further identified many significant effects between identified networks and correlation with cognitive capabilities have. More importantly, those effects are adjusted by the aging effect</li>
 <li>Future researchers can further validate using different methods. Since clustering results tend to be different if we switch to different types of clustering methods such as GMM</li>
 <li>Future researchers can also investigate one specific cognitive capability in detail given that we only performed relatively straightforward regression analysis</li>
 </ul>
@@ -564,7 +575,7 @@ div.tocify {
 <div style="margin-bottom:30px;">
 
 </div>
-<p>We decide to open source our code for future researchers. Please research out any of contributors listed above if you have any questions</p>
+<p>We decide to open source our code for future researchers. Please research out any of the contributors listed above if you have any questions</p>
 <p><a href="code.zip">Download Here</a></p>
 </div>
 
